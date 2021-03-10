@@ -1,0 +1,26 @@
+﻿day1 
+	start learning how to make a game with sdl
+	i am using Visual Studio 2019 for this 
+	start setup enviroment :
+	lib folder:
+		SDL2_image 
+		SDL_devel_VC
+	Steps to setup enviroment :
+	1.Go to Project Properties -> VC++ Directories -> Include Directories -> ( trỏ tới folder include );
+	2. add linker
+		Go to Project Properties -> Linker -> Additional Dependencies -> Edit.
+		add SDL2.lib;SDL2main.lib;SDL2_image.lib
+	3. add library
+		Go to Project Properties -> VC++ Directories -> trỏ library tới x64 hoặc x86
+	Basically done
+
+FIRST LEARN HOW TO "HELLO WORLD IN SDL"
+	-must include <SDL.h>
+	-int main() function i should have " int main(int argc, char* args[]) " , dont really know why i have to do
+	so , but just add it.
+	-learn SDL_Init(); Use this function to initialize the SDL library. This must be called before using most other SDL functions.
+	-
+
+
+		
+
