@@ -152,12 +152,14 @@
     <ClCompile Include="attemp3\texturehandle.cpp" />
     <ClCompile Include="attemp3\game.cpp" />
     <ClCompile Include="attemp3\player.cpp" />
+    <ClCompile Include="attemp3\gun.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="attemp3\stdafx.h" />
     <ClInclude Include="attemp3\texturehandle.h" />
     <ClInclude Include="attemp3\game.h" />
     <ClInclude Include="attemp3\player.h" />
+    <ClInclude Include="attemp3\gun.h" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="peanut\aBullet.wav" />

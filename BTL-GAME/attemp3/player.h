@@ -2,7 +2,7 @@
 #include "stdafx.h"
 
 namespace playerconstants {
-	const float WALK_SPEED = 2.0f;
+	const float WALK_SPEED = 3.0f;
 }
 
 class player

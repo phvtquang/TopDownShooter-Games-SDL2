@@ -10,7 +10,7 @@ player::player()
 	//init idle animation clip
 	frameClipIdle = 0;
 	FRAME_Idle = 4;
-	DELAY_Idle = 12;
+	DELAY_Idle = 10;
 	setClipIdle();
 
 	//init moving animation clip
@@ -130,6 +130,7 @@ void player::animationMOVING()
 
 void player::playeranimation()
 {
+	setdesrect();
 	if (idle == true) {
 		animationIDLE();
 	}

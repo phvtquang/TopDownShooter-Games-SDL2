@@ -1,5 +1,4 @@
 #include "game.h"
-SDL_Rect tempRect={ 100,100,40,40 };
 
 void game::init(int SCREEN_WIDTH, int SCREEN_HEIGHT, Uint32 flags)
 {
@@ -17,32 +16,51 @@ void game::init(int SCREEN_WIDTH, int SCREEN_HEIGHT, Uint32 flags)
 
 
 	/////////////////////////////////////////////////////////////////////////////
-	//create temp surface then load IMG to it
-	SDL_Surface* tmpsurface = NULL;
-	tmpsurface = IMG_Load("peanut/crun.png");
+	//create texture and load into
+	playerTexture = IMG_LoadTexture(maingamerenderer, "peanut/crun.png");
 
-	//create texture to load it into
-	playerTexture = SDL_CreateTextureFromSurface(maingamerenderer, tmpsurface);
+	playerTextureidle = IMG_LoadTexture(maingamerenderer, "peanut/cidle.png");
 
-	//free temp surface
-	SDL_FreeSurface(tmpsurface);
-
-	/// ////////////////////////////////////////////////////////////////////
-	//create temp surface then load IMG to it
-	tmpsurface = IMG_Load("peanut/cidle.png");
-
-	//create texture to load it into
-	playerTextureidle = SDL_CreateTextureFromSurface(maingamerenderer, tmpsurface);
-
-	//free temp surface
-	SDL_FreeSurface(tmpsurface);
-
+	guntexture = IMG_LoadTexture(maingamerenderer, "peanut/sGun.png");
 
 
 }
 
+
+int mouseposx;
+int mouseposy;
 void game::draw()
 {
+
+	
+
+	if (_player.idle == true)
+	{
+		_player.playeranimation();
+		SDL_RenderCopy(maingamerenderer, playerTextureidle, &_player.playersourceRect, &_player.playerdesRect);
+		
+	}
+	else {
+		if (_player.facingLeft == true)
+		{
+			_player.playeranimation();
+			SDL_RenderCopyEx(maingamerenderer, playerTexture, &_player.playersourceRect, &_player.playerdesRect, NULL, NULL, SDL_FLIP_HORIZONTAL);
+
+		}
+		else
+		{
+			_player.playeranimation();
+			SDL_RenderCopyEx(maingamerenderer, playerTexture, &_player.playersourceRect, &_player.playerdesRect, NULL, NULL, SDL_FLIP_NONE);
+
+		}
+
+	}
+
+	//render the gun
+	_gun.gunUPDATEPOSITION(_player.playerdesRect.x + 20, _player.playerdesRect.y + 40);
+	SDL_GetMouseState(&mouseposx, &mouseposy);
+	SDL_RenderCopyEx(maingamerenderer, guntexture, &_gun.gunsourceRect, &_gun.gundesRect, -mouseposx, &_gun.centergunpoint, SDL_FLIP_NONE);
+	SDL_RenderPresent(maingamerenderer);
 }
 
 void game::update()
@@ -55,28 +73,6 @@ void game::gameloop()
 {
 	SDL_RenderClear(maingamerenderer);
 	_player.getinput();
-	if (_player.idle == true)
-	{
-		_player.setdesrect();
-		_player.playeranimation();
-		SDL_RenderCopy(maingamerenderer, playerTextureidle, &_player.playersourceRect, &_player.playerdesRect);
-	}
-	else {
-		if (_player.facingLeft == true)
-		{
-			_player.setdesrect();
-			_player.playeranimation();
-			SDL_RenderCopyEx(maingamerenderer, playerTexture, &_player.playersourceRect, &_player.playerdesRect,NULL,NULL,SDL_FLIP_HORIZONTAL);
-		}
-		else
-		{
-			_player.setdesrect();
-			_player.playeranimation();
-			SDL_RenderCopyEx(maingamerenderer, playerTexture, &_player.playersourceRect, &_player.playerdesRect, NULL, NULL, SDL_FLIP_NONE);
-		}
-
-	}
-	
-	SDL_RenderPresent(maingamerenderer);
+	draw();
 }
 
