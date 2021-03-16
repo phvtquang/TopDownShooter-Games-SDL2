@@ -29,9 +29,10 @@ void game::init(int SCREEN_WIDTH, int SCREEN_HEIGHT, Uint32 flags)
 
 int mouseposx;
 int mouseposy;
+int angle;
 void game::draw()
 {
-
+	update();
 	
 
 	if (_player.idle == true)
@@ -59,16 +60,23 @@ void game::draw()
 	//render the gun
 	_gun.gunUPDATEPOSITION(_player.playerdesRect.x + 20, _player.playerdesRect.y + 40);
 	SDL_GetMouseState(&mouseposx, &mouseposy);
-	SDL_RenderCopyEx(maingamerenderer, guntexture, &_gun.gunsourceRect, &_gun.gundesRect, -mouseposx, &_gun.centergunpoint, SDL_FLIP_NONE);
+	angle = atan2((-_gun.gundesRect.y + mouseposy) , (- _gun.gundesRect.x + mouseposx)) * 180 / 3.14;
+	SDL_RenderCopyEx(maingamerenderer, guntexture, &_gun.gunsourceRect, &_gun.gundesRect, angle, &_gun.centergunpoint, SDL_FLIP_NONE);
 	SDL_RenderPresent(maingamerenderer);
 }
 
 void game::update()
 {
-	
+	SDL_GetMouseState(&mouseposx, &mouseposy);
+	if (mouseposx < _player.playerdesRect.x)
+	{
+		_player.facingLeft = true;
+	}
+	else
+	{
+		_player.facingLeft = false;
+	}
 }
-
-
 void game::gameloop()
 {
 	SDL_RenderClear(maingamerenderer);

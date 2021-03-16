@@ -34,7 +34,7 @@ SDL_Rect player::getplayersourceRect()
 
 void player::MoveLeft()
 {
-	facingLeft = true;
+	//facingLeft = true;
 	idle = false;
 	px -= playerconstants::WALK_SPEED;
 	
@@ -42,7 +42,7 @@ void player::MoveLeft()
 
 void player::MoveRight()
 {
-	facingLeft = false;
+	//facingLeft = false;
 	idle = false;
 	px += playerconstants::WALK_SPEED;
 }

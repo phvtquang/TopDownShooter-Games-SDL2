@@ -5,12 +5,12 @@
 #include "game.h"
 using namespace std;
 
-const int SCREEN_WIDTH = 800;
-const int SCREEN_HEIGHT = 600;
+const int SCREEN_WIDTH = 1920;
+const int SCREEN_HEIGHT = 1080;
 
 int main(int argc, char* args[])
 {
-	int flags = 4;
+	int flags = 1;
 	game game;
 	game.init(SCREEN_WIDTH,SCREEN_HEIGHT,flags);
 

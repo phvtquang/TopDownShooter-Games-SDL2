@@ -26,9 +26,6 @@
     <ClCompile Include="attemp3\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="attemp3\texturehandle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="attemp3\game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -40,9 +37,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="attemp3\texturehandle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="attemp3\stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
