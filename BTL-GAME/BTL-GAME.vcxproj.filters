@@ -9,24 +9,13 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="knigt">
-      <UniqueIdentifier>{345002c0-02d8-450e-9cc2-78c112cb4f4d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Header Files">
+    <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="kight\Knight-Attack-Sheet.png">
-      <Filter>knigt</Filter>
-    </Image>
-    <Image Include="kight\Knight-Idle-Sheet.png">
-      <Filter>knigt</Filter>
-    </Image>
-    <Image Include="kight\Knight-Walk-Sheet.png">
-      <Filter>knigt</Filter>
-    </Image>
+    <Filter Include="Resource Files\peanut">
+      <UniqueIdentifier>{2b46c274-eeb4-4c46-a31d-2023a6296037}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="note.txt">
@@ -34,13 +23,68 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SourceMarty.cpp">
+    <ClCompile Include="attemp3\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="attemp3\texturehandle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="attemp3\game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="attemp3\player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="renderwindow.h">
-      <Filter>Source Files\Header Files</Filter>
+    <ClInclude Include="attemp3\texturehandle.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="attemp3\stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="attemp3\game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="attemp3\player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="peanut\aBullet.wav">
+      <Filter>Resource Files\peanut</Filter>
+    </Media>
+    <Media Include="peanut\aDeath.wav">
+      <Filter>Resource Files\peanut</Filter>
+    </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="peanut\cidle.png">
+      <Filter>Resource Files\peanut</Filter>
+    </Image>
+    <Image Include="peanut\crun.png">
+      <Filter>Resource Files\peanut</Filter>
+    </Image>
+    <Image Include="peanut\enemey.png">
+      <Filter>Resource Files\peanut</Filter>
+    </Image>
+    <Image Include="peanut\sBg.png">
+      <Filter>Resource Files\peanut</Filter>
+    </Image>
+    <Image Include="peanut\sBullet.png">
+      <Filter>Resource Files\peanut</Filter>
+    </Image>
+    <Image Include="peanut\sEnemyDead.png">
+      <Filter>Resource Files\peanut</Filter>
+    </Image>
+    <Image Include="peanut\sGun.png">
+      <Filter>Resource Files\peanut</Filter>
+    </Image>
+    <Image Include="peanut\sMap.png">
+      <Filter>Resource Files\peanut</Filter>
+    </Image>
+    <Image Include="peanut\sWall.png">
+      <Filter>Resource Files\peanut</Filter>
+    </Image>
   </ItemGroup>
 </Project>

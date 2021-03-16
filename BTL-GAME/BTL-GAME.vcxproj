@@ -148,15 +148,31 @@
     <None Include="note.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="kight\Knight-Attack-Sheet.png" />
-    <Image Include="kight\Knight-Idle-Sheet.png" />
-    <Image Include="kight\Knight-Walk-Sheet.png" />
+    <ClCompile Include="attemp3\main.cpp" />
+    <ClCompile Include="attemp3\texturehandle.cpp" />
+    <ClCompile Include="attemp3\game.cpp" />
+    <ClCompile Include="attemp3\player.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SourceMarty.cpp" />
+    <ClInclude Include="attemp3\stdafx.h" />
+    <ClInclude Include="attemp3\texturehandle.h" />
+    <ClInclude Include="attemp3\game.h" />
+    <ClInclude Include="attemp3\player.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="renderwindow.h" />
+    <Media Include="peanut\aBullet.wav" />
+    <Media Include="peanut\aDeath.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="peanut\cidle.png" />
+    <Image Include="peanut\crun.png" />
+    <Image Include="peanut\enemey.png" />
+    <Image Include="peanut\sBg.png" />
+    <Image Include="peanut\sBullet.png" />
+    <Image Include="peanut\sEnemyDead.png" />
+    <Image Include="peanut\sGun.png" />
+    <Image Include="peanut\sMap.png" />
+    <Image Include="peanut\sWall.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
