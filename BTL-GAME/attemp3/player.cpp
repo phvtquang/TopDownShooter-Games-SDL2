@@ -27,11 +27,6 @@ player::player()
 	playerdesRect = { 100,100,80,80 };
 }
 
-SDL_Rect player::getplayersourceRect()
-{
-	return playersourceRect;
-}
-
 void player::MoveLeft()
 {
 	//facingLeft = true;
@@ -87,6 +82,9 @@ void player::setClipIdle()
 
 void player::getinput()
 {
+	
+	
+
 	const Uint8* key = SDL_GetKeyboardState(NULL);
 	idle = true;
 	if (key[SDL_SCANCODE_W]) {
@@ -107,6 +105,8 @@ void player::getinput()
 		player::MoveDown();
 		idle = false;
 	}
+
+	
 }
 
 void player::setdesrect() {

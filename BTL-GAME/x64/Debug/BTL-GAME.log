@@ -1,3 +1,2 @@
-﻿  game.cpp
-C:\Users\Pham Viet Quang\Desktop\CODE\GAME\BTL-GAME\BTL-GAME\attemp3\game.cpp(63,92): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+﻿  main.cpp
   BTL-GAME.vcxproj -> C:\Users\Pham Viet Quang\Desktop\CODE\GAME\BTL-GAME\x64\Debug\BTL-GAME.exe

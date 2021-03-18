@@ -5,19 +5,21 @@
 #include "game.h"
 using namespace std;
 
-const int SCREEN_WIDTH = 1920;
-const int SCREEN_HEIGHT = 1080;
+const int SCREEN_WIDTH = 320*3;
+const int SCREEN_HEIGHT = 320*3;
 
 int main(int argc, char* args[])
 {
-	int flags = 1;
+	int flags = 1; //4 for nomal and 1 for fullscreen
 	game game;
 	game.init(SCREEN_WIDTH,SCREEN_HEIGHT,flags);
 
 
 	Uint32 frameStart, frameTime;
-	SDL_Event e;
+	
 
+	//GAMELOOP
+	SDL_Event e;
 	bool run = true;
 	while (run)
 	{
@@ -34,12 +36,15 @@ int main(int argc, char* args[])
 			{
 				run = false;
 			}
-		}
 
-		game.gameloop();
+			game.gameloop();
+
+			
+		}
 		
 
-
+	
+		
 
 		frameTime = SDL_GetTicks() - frameStart;
 		if (1000 / 60 > frameTime)

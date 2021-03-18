@@ -9,12 +9,22 @@ public :
 	* FLAGS 1 for FULLSCREEN , 4 for SHOWN
 	*/
 	void init(int SCREEN_WIDTH, int SCREEN_HEIGHT, Uint32 flags);	
-	
 	void draw();
-	void update();
+	void updateplayerfacing();
 	void gameloop();
 
+	
+
 private:
+
+	//mouse && angle for gun
+	int mouseposx;
+	int mouseposy;
+	int angle;
+
+	//map
+	SDL_Texture* map;
+
 	//player 
 	player _player;
 	SDL_Texture* playerTexture;
@@ -28,6 +38,5 @@ private:
 	//MAIN RENDERER AND WINDOW
 	SDL_Renderer* maingamerenderer;
 	SDL_Window* maingamewindow;
-
 };
 

@@ -9,7 +9,6 @@ class player
 {
 public:
 	player();
-	SDL_Rect getplayersourceRect();
 
 	/* void MoveLeft
 	 * Moves the player left by -dx
@@ -31,6 +30,8 @@ public:
 	 */
 	void MoveDown();
 
+
+	//set destionation rectangle after moving (update px andd py)
 	void setdesrect();
 
 	//set animation clip
@@ -42,25 +43,22 @@ public:
 	void animationIDLE();
 	void animationMOVING();
 	void playeranimation();
+
+	// "true" if player is facing left
 	bool facingLeft;
+
+
+	// "true" if player not moving
 	bool idle;
 
+	//souceRect
 	SDL_Rect playersourceRect;
+
 	SDL_Rect playerdesRect;
 
 private:
 	//current position
 	float px, py;
-
-	//souceRect
-	
-
-
-	// "true" if player is facing left
-	
-
-	// "true" if player not moving
-	
 
 	//for moving animation
 	int frameClipMoving; // ++

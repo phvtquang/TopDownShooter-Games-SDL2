@@ -15,26 +15,30 @@ void game::init(int SCREEN_WIDTH, int SCREEN_HEIGHT, Uint32 flags)
 
 
 
-	/////////////////////////////////////////////////////////////////////////////
+	//LOAD TEXTURE
 	//create texture and load into
 	playerTexture = IMG_LoadTexture(maingamerenderer, "peanut/crun.png");
-
 	playerTextureidle = IMG_LoadTexture(maingamerenderer, "peanut/cidle.png");
-
 	guntexture = IMG_LoadTexture(maingamerenderer, "peanut/sGun.png");
-
-
+	//load map texture
+	map = IMG_LoadTexture(maingamerenderer, "peanut/sMap.png");
+	
 }
 
 
-int mouseposx;
-int mouseposy;
-int angle;
+
 void game::draw()
 {
-	update();
-	
 
+	SDL_RenderClear(maingamerenderer);
+
+	//render map
+	SDL_RenderCopy(maingamerenderer, map, NULL, NULL);
+
+	//update char Facing state
+	updateplayerfacing();
+	//then
+	//draw player
 	if (_player.idle == true)
 	{
 		_player.playeranimation();
@@ -56,16 +60,19 @@ void game::draw()
 		}
 
 	}
-
-	//render the gun
+	
+	//draw the gun
 	_gun.gunUPDATEPOSITION(_player.playerdesRect.x + 20, _player.playerdesRect.y + 40);
 	SDL_GetMouseState(&mouseposx, &mouseposy);
 	angle = atan2((-_gun.gundesRect.y + mouseposy) , (- _gun.gundesRect.x + mouseposx)) * 180 / 3.14;
 	SDL_RenderCopyEx(maingamerenderer, guntexture, &_gun.gunsourceRect, &_gun.gundesRect, angle, &_gun.centergunpoint, SDL_FLIP_NONE);
+	
+
+	//PRESENT THE RENDERER
 	SDL_RenderPresent(maingamerenderer);
 }
 
-void game::update()
+void game::updateplayerfacing()
 {
 	SDL_GetMouseState(&mouseposx, &mouseposy);
 	if (mouseposx < _player.playerdesRect.x)
@@ -77,9 +84,19 @@ void game::update()
 		_player.facingLeft = false;
 	}
 }
+
 void game::gameloop()
 {
-	SDL_RenderClear(maingamerenderer);
+	/*
+	while (SDL_PollEvent(&ev) != 0)
+	{
+		cout << "1" << endl;
+		if (ev.type == SDL_MOUSEBUTTONDOWN)
+		{
+			cout << "mouse down" << endl;
+		}
+	}
+	*/
 	_player.getinput();
 	draw();
 }
