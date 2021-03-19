@@ -1,0 +1,8 @@
+*/vs
+*/x64
+*/Debug
+*.sln
+*/1tempcode
+*/knight
+*.vcxproj
+*.vcxproj.filters
