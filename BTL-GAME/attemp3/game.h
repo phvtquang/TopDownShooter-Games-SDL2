@@ -36,9 +36,17 @@ private:
 	gun _gun;
 	SDL_Texture* guntexture;
 
+	//bullet
+	vector<bullet> _bullet;
+	vector<int> mousexbullet;
+	vector<int> mouseybullet;
+	vector<int> playerx;
+	vector<int> playery;
+
+	SDL_Texture* bulletTex;
+
 	//enemy
 	vector<enemy> _enemy;
-	
 	SDL_Texture* enemyBlow;
 	SDL_Texture* enemyTex;
 	

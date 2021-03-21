@@ -2,31 +2,66 @@
 
 
 
-float speed = 5.0f;
+float speed = 15.0f;
 
 bullet::bullet()
 {
+	f1 = 1;
+	f2 = 1;
+	coll = false;
 	bulletSourceRect = { 1 ,1 ,14*2 ,14*2 };
+
+
 	bulletDesRect = { 0 , 0 , 14*2 ,14*2 };
 
 
 }
 
-float f1, f2;
-void bullet::getbulletWay(int _mx, int _my, int _sx, int _sy)
+
+float bullet::getWAYf1(int _mx, int _my, int _sx, int _sy)
 {
-	float angle = atan((_mx - _sx) / (_my - _sy));
-	cout << angle << ' ';
+	float angle = atan2((_my - _sy) , (_mx - _sx));
+	//cout << angle << ' ';
 	f1 = cos(angle) * speed;
-
-	f2 = sin(angle) * speed;
-
+	return f1;
 }
 
-void bullet::updatebullet(int _mx, int _my, int _sx, int _sy)
+float bullet::getWAYf2(int _mx, int _my, int _sx, int _sy)
 {
-	getbulletWay(_mx,_my,_sx,_sy);
-	cout << f1 << ' ' << f2 << endl;
-	bulletDesRect.x += 1;
-	bulletDesRect.y += 1;
+	float angle = atan2((_my - _sy) , (_mx - _sx));
+	//cout << angle << ' ';
+	f2 = sin(angle) * speed;
+	return f2;
 }
+
+bool bullet::outofscreen()
+{
+	if (bulletDesRect.x > 800 || bulletDesRect.y > 800)
+	{
+		return true;
+	}
+	else
+
+	{
+		return false;
+
+	}
+}
+bool bullet::disapear()
+{
+	if (outofscreen())
+	{
+		return true;
+	}
+	if (coll) {
+		return true;
+	}
+}
+void bullet::updatebullet()
+{
+	
+	//cout << f1 << ' ' << f2 << endl;
+	bulletDesRect.x += f1;
+	bulletDesRect.y += f2;
+}
+

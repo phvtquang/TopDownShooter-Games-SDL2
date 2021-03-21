@@ -19,7 +19,8 @@ void game::init(int SCREEN_WIDTH, int SCREEN_HEIGHT, Uint32 flags)
 	guntexture = IMG_LoadTexture(maingamerenderer, "peanut/sGun.png");
 	map = IMG_LoadTexture(maingamerenderer, "peanut/sMap.png");
 	enemyTex = IMG_LoadTexture(maingamerenderer, "peanut/enemey.png");
-	enemyBlow = IMG_LoadTexture(maingamerenderer, "peanut/explosion.png");
+	enemyBlow = IMG_LoadTexture(maingamerenderer, "peanut/sEnemyDead.png");
+	bulletTex = IMG_LoadTexture(maingamerenderer, "peanut/sBullet.png");
 
 	//load MUSIC 
 	//gMusic = Mix_LoadMUS("21_sound_effects_and_music/beat.wav");
@@ -81,11 +82,83 @@ void game::gameloop()
 	int health = 200;
 	while (run)
 	{
+		
+	
+	
+		
+		frameStart = SDL_GetTicks();
+		while (SDL_PollEvent(&e) != 0)
+		{
+			
+			switch (e.type)
+			{
+			case SDL_KEYDOWN:
+			{
+				if (e.key.keysym.sym == SDLK_ESCAPE)
+				run = false;
+				break;
+			}
+				
+			case SDL_MOUSEBUTTONDOWN :
+				bullet __bullet;
+				__bullet.bulletDesRect.x = _gun.gundesRect.x;
+				__bullet.bulletDesRect.y = _gun.gundesRect.y;
+				
+				SDL_GetMouseState(&mouseposx, &mouseposy);
+				mousexbullet.push_back(mouseposx);
+				mouseybullet.push_back(mouseposy);
+				__bullet.f1 = __bullet.getWAYf1(mouseposx, mouseposy, _gun.gundesRect.x, _gun.gundesRect.y);
+				__bullet.f2 = __bullet.getWAYf2(mouseposx, mouseposy, _gun.gundesRect.x, _gun.gundesRect.y);
+
+				_bullet.push_back(__bullet);
+
+				playerx.push_back(_gun.gundesRect.x);
+				playery.push_back(_gun.gundesRect.y);
+				Mix_PlayChannel(-1, bulletsound, 0);
+				break;
+
+			}	
+		}
+
 		//map and player and gun
 		drawmapplayerandgun();
+
+		
+		
+		
+
+
+		//draw bullet
+		for (int i = 0; i < _bullet.size(); i++)
+		{
+
+			_bullet[i].updatebullet();
+
+			for (int j = 0; j < _enemy.size(); j++)
+			{
+				if (SDL_HasIntersection(&_enemy[j].enemyDesRect, &_bullet[i].bulletDesRect) && _bullet[i].coll==false )
+				{
+					_enemy[j].isDead = true;
+					_bullet[i].coll = true;
+				}	
+			}
+			if (_bullet[i].disapear() == false && !SDL_HasIntersection(&_bullet[i].bulletDesRect,&_gun.gundesRect) )
+			{
+				SDL_RenderCopy(maingamerenderer, bulletTex, NULL, &_bullet[i].bulletDesRect);
+			}
+			
+			
+			
+			
+		}
+
 		//draw enemy
-		enemy __enemy;
-		_enemy.push_back(__enemy);
+		if (_enemy.size() < 200)
+		{
+			enemy __enemy;
+			_enemy.push_back(__enemy);
+		}
+	
 		for (int i = 0; i < _enemy.size(); i++)
 		{
 			_enemy[i].updatePos(_player.playerdesRect);
@@ -101,40 +174,12 @@ void game::gameloop()
 				{
 					SDL_RenderCopyEx(maingamerenderer, enemyTex, &_player.playersourceRect, &_enemy[i].enemyDesRect, NULL, NULL, SDL_FLIP_NONE);
 				}
-				if (SDL_HasIntersection(&_enemy[i].enemyDesRect, &_player.playerdesRect))
-				{
-					_enemy[i].isDead = true;
-					Mix_PlayChannel(-1, bulletsound, 0);
-					SDL_RenderCopyEx(maingamerenderer, enemyBlow, NULL, &_enemy[i].enemyDesRect, NULL, NULL,SDL_FLIP_NONE);
-					_enemy.erase(_enemy.begin()+i);
-				}
 			}
-			
-		}
-		
-		
-
-
-		frameStart = SDL_GetTicks();
-		while (SDL_PollEvent(&e) != 0)
-		{
-			
-			switch (e.type)
+			else
 			{
-			case SDL_KEYDOWN:
-			{
-				if (e.key.keysym.sym == SDLK_ESCAPE)
-				run = false;
-				break;
+				SDL_RenderCopyEx(maingamerenderer, enemyBlow, NULL, &_enemy[i].enemyDesRect, NULL, NULL, SDL_FLIP_NONE);
+				_enemy.erase(_enemy.begin() + i);
 			}
-				
-			case SDL_MOUSEBUTTONDOWN :
-				//cout << "mouse down" << endl;
-				break;
-
-			}
-			
-			
 		}
 
 		//PRESENT THE RENDERER

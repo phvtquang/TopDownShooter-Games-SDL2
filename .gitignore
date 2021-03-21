@@ -1,4 +1,4 @@
-*/vs
+*/.vs
 */x64
 */Debug
 *.sln
@@ -8,3 +8,4 @@
 *.vcxproj.filters
 *.vcxproj.user
 *.dll
+*.pdb
