@@ -52,9 +52,20 @@ private:
 	
 	//sound
 	Mix_Music* gMusic;
-
 	Mix_Chunk* bulletsound;
 	Mix_Chunk* zombiesound;
+
+	//font and text
+	SDL_Color textColor;
+	SDL_Surface* textSurface;
+	SDL_Texture* mTexture;
+	string textureText;
+	SDL_Rect scoreBOX;
+	SDL_Rect healthbardesrect;
+	SDL_Rect healthbarsourcerect;
+	TTF_Font* gFont;
+	SDL_Texture* HEALTHBARTexture;
+	int healbox;
 
 	//MAIN RENDERER AND WINDOW
 	SDL_Renderer* maingamerenderer;

@@ -36,7 +36,7 @@ float bullet::getWAYf2(int _mx, int _my, int _sx, int _sy)
 
 bool bullet::outofscreen()
 {
-	if (bulletDesRect.x > 800 || bulletDesRect.y > 800)
+	if (bulletDesRect.x > SCREEN_WIDTH || bulletDesRect.y > SCREEN_WIDTH)
 	{
 		return true;
 	}
