@@ -20,13 +20,15 @@ void game::init(int SCREEN_WIDTH, int SCREEN_HEIGHT, Uint32 flags)
 	map = IMG_LoadTexture(maingamerenderer, "peanut/sMap.png");
 	enemyTex = IMG_LoadTexture(maingamerenderer, "peanut/enemey.png");
 	enemyBlow = IMG_LoadTexture(maingamerenderer, "peanut/sEnemyDead.png");
+	enemyBlow2 = IMG_LoadTexture(maingamerenderer, "peanut/explosion.png");
 	bulletTex = IMG_LoadTexture(maingamerenderer, "peanut/sBullet.png");
 
 	//load MUSIC 
 	//gMusic = Mix_LoadMUS("21_sound_effects_and_music/beat.wav");
 	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
-	bulletsound = Mix_LoadWAV("peanut/aBullet.wav");
-	
+	bulletsound = Mix_LoadWAV("peanut/aDeath.wav");
+	zombiesound = Mix_LoadWAV("peanut/zombiedie.wav");
+	gMusic = Mix_LoadMUS("peanut/backgroun.mp3");
 }
 
 
@@ -37,33 +39,10 @@ void game::drawmapplayerandgun()
 	//draw map
 	SDL_RenderCopy(maingamerenderer, map, NULL, NULL);
 
+
 	//getinput
 	_player.getinput();
-	//then
-	//draw player
-	if (_player.idle == true)
-	{
-		_player.playeranimation();
-		SDL_RenderCopy(maingamerenderer, playerTextureidle, &_player.playersourceRect, &_player.playerdesRect);
-	}
-	else {
-		if (_player.facingLeft == true)
-		{
-			_player.playeranimation();
-			SDL_RenderCopyEx(maingamerenderer, playerTexture, &_player.playersourceRect, &_player.playerdesRect, NULL, NULL, SDL_FLIP_HORIZONTAL);
-		}
-		else
-		{
-			_player.playeranimation();
-			SDL_RenderCopyEx(maingamerenderer, playerTexture, &_player.playersourceRect, &_player.playerdesRect, NULL, NULL, SDL_FLIP_NONE);
-		}
-
-	}
-	//draw the gun
-	_gun.gunUPDATEPOSITION(_player.playerdesRect.x + 20, _player.playerdesRect.y + 40);
-	SDL_GetMouseState(&mouseposx, &mouseposy);
-	angle = atan2(( mouseposy - _gun.gundesRect.y ) , ( mouseposx - _gun.gundesRect.x )) * 180 / 3.14;
-	SDL_RenderCopyEx(maingamerenderer, guntexture, &_gun.gunsourceRect, &_gun.gundesRect, angle, &_gun.centergunpoint, SDL_FLIP_NONE);
+	
 	
 	
 	
@@ -80,6 +59,7 @@ void game::gameloop()
 	SDL_Event e;
 	bool run = true;
 	int health = 200;
+	Mix_PlayMusic(gMusic, -1);
 	while (run)
 	{
 		
@@ -122,12 +102,6 @@ void game::gameloop()
 
 		//map and player and gun
 		drawmapplayerandgun();
-
-		
-		
-		
-
-
 		//draw bullet
 		for (int i = 0; i < _bullet.size(); i++)
 		{
@@ -136,15 +110,24 @@ void game::gameloop()
 
 			for (int j = 0; j < _enemy.size(); j++)
 			{
-				if (SDL_HasIntersection(&_enemy[j].enemyDesRect, &_bullet[i].bulletDesRect) && _bullet[i].coll==false )
+				if (!_enemy[j].isDead)
 				{
-					_enemy[j].isDead = true;
-					_bullet[i].coll = true;
-				}	
+					if (SDL_HasIntersection(&_enemy[j].enemyDesRect, &_bullet[i].bulletDesRect) && _bullet[i].coll == false)
+					{
+						Mix_PlayChannel(-1, zombiesound, 0);
+						_enemy[j].isDead = true;
+						_bullet[i].coll = true;
+					}
+				}
+				
 			}
 			if (_bullet[i].disapear() == false && !SDL_HasIntersection(&_bullet[i].bulletDesRect,&_gun.gundesRect) )
 			{
 				SDL_RenderCopy(maingamerenderer, bulletTex, NULL, &_bullet[i].bulletDesRect);
+			}
+			if (_bullet[i].disapear())
+			{
+				_bullet.erase(_bullet.begin() + i);
 			}
 			
 			
@@ -153,7 +136,7 @@ void game::gameloop()
 		}
 
 		//draw enemy
-		if (_enemy.size() < 200)
+		if (_enemy.size() < 100)
 		{
 			enemy __enemy;
 			_enemy.push_back(__enemy);
@@ -177,10 +160,42 @@ void game::gameloop()
 			}
 			else
 			{
+				_enemy[i].countdead++;
 				SDL_RenderCopyEx(maingamerenderer, enemyBlow, NULL, &_enemy[i].enemyDesRect, NULL, NULL, SDL_FLIP_NONE);
-				_enemy.erase(_enemy.begin() + i);
+				if (_enemy[i].countdead >= 50)
+				{
+
+					_enemy.erase(_enemy.begin() + i);
+				}
 			}
+			
 		}
+
+		//then
+	//draw player
+		if (_player.idle == true)
+		{
+			_player.playeranimation();
+			SDL_RenderCopy(maingamerenderer, playerTextureidle, &_player.playersourceRect, &_player.playerdesRect);
+		}
+		else {
+			if (_player.facingLeft == true)
+			{
+				_player.playeranimation();
+				SDL_RenderCopyEx(maingamerenderer, playerTexture, &_player.playersourceRect, &_player.playerdesRect, NULL, NULL, SDL_FLIP_HORIZONTAL);
+			}
+			else
+			{
+				_player.playeranimation();
+				SDL_RenderCopyEx(maingamerenderer, playerTexture, &_player.playersourceRect, &_player.playerdesRect, NULL, NULL, SDL_FLIP_NONE);
+			}
+
+		}
+		//draw the gun
+		_gun.gunUPDATEPOSITION(_player.playerdesRect.x + 20, _player.playerdesRect.y + 40);
+		SDL_GetMouseState(&mouseposx, &mouseposy);
+		angle = atan2((mouseposy - _gun.gundesRect.y), (mouseposx - _gun.gundesRect.x)) * 180 / 3.14;
+		SDL_RenderCopyEx(maingamerenderer, guntexture, &_gun.gunsourceRect, &_gun.gundesRect, angle, &_gun.centergunpoint, SDL_FLIP_NONE);
 
 		//PRESENT THE RENDERER
 		SDL_RenderPresent(maingamerenderer);

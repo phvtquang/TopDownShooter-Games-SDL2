@@ -23,7 +23,6 @@ private:
 	int mouseposx;
 	int mouseposy;
 
-
 	//map
 	SDL_Texture* map;
 
@@ -48,13 +47,14 @@ private:
 	//enemy
 	vector<enemy> _enemy;
 	SDL_Texture* enemyBlow;
+	SDL_Texture* enemyBlow2;
 	SDL_Texture* enemyTex;
 	
 	//sound
 	Mix_Music* gMusic;
 
 	Mix_Chunk* bulletsound;
-
+	Mix_Chunk* zombiesound;
 
 	//MAIN RENDERER AND WINDOW
 	SDL_Renderer* maingamerenderer;
