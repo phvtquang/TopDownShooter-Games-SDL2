@@ -7,21 +7,25 @@
 class game
 {
 public :
+
 	/*CREATE A GAME WINDOW AND A RENDERER FOR THAT WINDOW , PASSING IN THE WIDTH AND THE HEIGHT OF THAT WINDOW
 	* FLAGS 1 for FULLSCREEN , 4 for SHOWN
 	*/
 	void init(int SCREEN_WIDTH, int SCREEN_HEIGHT, Uint32 flags);	
-	void drawmapplayerandgun();
+	void draw();
 	void gameloop();
-
-	
 
 private:
 
-	//mouse && angle for gun
+	long long health;
+	long long score;
+
+	//mouse pos && angle for gun and bullet
 	int angle;
 	int mouseposx;
 	int mouseposy;
+	bool mousedown;
+	int delaybullet;
 
 	//map
 	SDL_Texture* map;
@@ -37,11 +41,6 @@ private:
 
 	//bullet
 	vector<bullet> _bullet;
-	vector<int> mousexbullet;
-	vector<int> mouseybullet;
-	vector<int> playerx;
-	vector<int> playery;
-
 	SDL_Texture* bulletTex;
 
 	//enemy

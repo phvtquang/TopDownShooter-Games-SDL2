@@ -30,7 +30,7 @@ public:
 	 */
 	void MoveDown();
 
-
+	//get player moving input
 	void getinput();
 
 	//set destionation rectangle after moving (update px andd py)
@@ -43,35 +43,33 @@ public:
 	//set animation 
 	void animationIDLE();
 	void animationMOVING();
-	void playeranimation();
+	void playerupdate();
 
 	// "true" if player is facing left
 	bool facingLeft;
 
-
 	// "true" if player not moving
 	bool idle;
 
-	//souceRect
+	//PLAYER SOURCE AND DES RECT
 	SDL_Rect playersourceRect;
-
 	SDL_Rect playerdesRect;
 
 private:
 	//current position
-	float px, py;
+	int px, py;
 
 	//for moving animation
-	int frameClipMoving; // ++
 	int FRAME_MOVING; //7
 	int DELAY_MOVING; // 7
 	SDL_Rect clipsMOVING[7];
 
 	//for idle animation
-	int frameClipIdle; // ++ 
 	int FRAME_Idle; //4
 	int DELAY_Idle; //4
 	SDL_Rect clipsIDLE[4];
+
+	int frameClip; // ++ 
 
 	
 };

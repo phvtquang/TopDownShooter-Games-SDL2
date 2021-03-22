@@ -8,8 +8,9 @@ enemy::enemy()
 	py = 100;
 	isDead = false;
 	faceLeft = false;
-	enemyDesRect.x = rand() % ( 10000 - 800 + 1 ) +500;
-	enemyDesRect.y = rand() % ( 10000 - 800 + 1) + 500;
+	enemyDesRect.x = rand() % ( 1920 - 800 + 1 ) +500;
+	enemyDesRect.y = rand() % ( 1920 - 800 + 1) + 500;
+
 	enemyDesRect.w = 40 * 2;
 	enemyDesRect.h = 40 * 2;
 	countdead = 0;
