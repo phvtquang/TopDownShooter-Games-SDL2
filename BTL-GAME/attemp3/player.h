@@ -2,7 +2,7 @@
 #include "stdafx.h"
 
 namespace playerconstants {
-	const float WALK_SPEED = 3.0f;
+	const float WALK_SPEED = 5.0f;
 }
 
 class player
@@ -55,9 +55,11 @@ public:
 	SDL_Rect playersourceRect;
 	SDL_Rect playerdesRect;
 
-private:
 	//current position
 	int px, py;
+
+private:
+	
 
 	//for moving animation
 	int FRAME_MOVING; //7

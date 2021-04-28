@@ -66,24 +66,28 @@ void player::MoveLeft()
 {
 	idle = false;
 	px -= playerconstants::WALK_SPEED;
+	if (px < 0) px = 0;
 }
 
 void player::MoveRight()
 {
 	idle = false;
 	px += playerconstants::WALK_SPEED;
+	if (px > SCREEN_WIDTH-playerdesRect.w) px = SCREEN_WIDTH-playerdesRect.w;
 }
 
 void player::MoveUp()
 {
 	idle = false;
 	py -= playerconstants::WALK_SPEED;
+	if (py < 0) py = 0;
 }
 
 void player::MoveDown()
 {
 	idle = false;
 	py += playerconstants::WALK_SPEED;
+	if (py > SCREEN_HEIGHT-playerdesRect.h) py = SCREEN_HEIGHT-playerdesRect.h;
 }
 
 
@@ -113,7 +117,7 @@ void player::getinput()
 
 void player::setdesrect() {
 	playerdesRect.x = px;
-	playerdesRect.y = py;
+	playerdesRect.y = py;	
 }
 
 void player::playerupdate()

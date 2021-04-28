@@ -17,6 +17,7 @@ public:
 	void updatePos(SDL_Rect playerrect);
 	bool faceLeft;
 	bool isDead;
+	bool isBoss;
 	SDL_Rect enemyDesRect;
 };
 

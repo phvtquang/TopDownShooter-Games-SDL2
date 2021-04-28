@@ -11,5 +11,5 @@
 #include <stdlib.h>
 using namespace std;
 
-const int SCREEN_WIDTH = 1360;
-const int SCREEN_HEIGHT = 768;
+const int SCREEN_WIDTH = 320*3;
+const int SCREEN_HEIGHT = 320*3;
