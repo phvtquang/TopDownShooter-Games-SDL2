@@ -152,19 +152,24 @@ void game::drawBOX()
 		if (SDL_HasIntersection(&_player.playerdesRect, &_misterybox[i].boxRect))
 		{
 			int e = rand() % 5;
-			if (e == 5 || e==4)
+			if (e == 5 || e==4 || e==3)
 			{
 				Mix_PlayChannel(-1, rampage, 0);
 				op = 1000;
 				e = 0;
 				rampagetimer = 170;
 			}
-			if (e == 1 || e== 2 || e==3)
+			if (e == 1 || e== 2 )
 			{
 				Mix_PlayChannel(-1, hitthebox, 0);
 				health += 1500;
 				e = 0;
 				healthtimer = 170;
+			}
+			if (e == 0)
+			{
+				bossnum++;
+				e = 0;
 			}
 
 			
@@ -299,6 +304,13 @@ void game::draw()
 			_enemy.push_back(__enemy);
 		}
 		
+	}
+	if (bossnum > 0)
+	{
+		enemy __enemy;
+		__enemy.isBoss = true;
+		_enemy.push_back(__enemy);
+		bossnum--;
 	}
 
 	//for through the enemy vector to check if there is any dead enemy to erase it out -> save memory

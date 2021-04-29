@@ -70,6 +70,8 @@ private:
 
 	int musicvolume = 128;
 
+	int bossnum = 0;
+
 	//menu
 	SDL_Texture* menutex[20];
 	SDL_Texture* resumemenu;

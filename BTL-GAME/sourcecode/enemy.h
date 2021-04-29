@@ -18,6 +18,7 @@ public:
 	bool faceLeft;
 	bool isDead;
 	bool isBoss;
+	int bosshealth = 10;
 	SDL_Rect enemyDesRect;
 };
 

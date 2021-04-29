@@ -9,11 +9,7 @@ enemy::enemy()
 	isDead = false;
 	faceLeft = false;
 	isBoss = false;
-	if (isBoss)
-	{
-		enemyDesRect.w = 40 * 4;
-		enemyDesRect.h = 40 * 4;
-	}
+	bosshealth = 10;
 	enemyDesRect.x = -SCREEN_WIDTH*4 +( rand() % (SCREEN_WIDTH*4 + 1 - -SCREEN_WIDTH*4));
 	enemyDesRect.y = -SCREEN_HEIGHT*4 + (rand() % (SCREEN_HEIGHT*4 + 1 - -SCREEN_HEIGHT*4));
 
@@ -24,6 +20,11 @@ enemy::enemy()
 
 void enemy::updatePos(SDL_Rect playerRECT)
 {
+	if (isBoss)
+	{
+		enemyDesRect.w = 40 * 5;
+		enemyDesRect.h = 40 * 5;
+	}
 	if (isDead == false)
 	{
 		float angle = atan2((playerRECT.y - enemyDesRect.y), (playerRECT.x - enemyDesRect.x));
