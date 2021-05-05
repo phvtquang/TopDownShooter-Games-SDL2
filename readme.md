@@ -19,10 +19,10 @@
 
 ## Video
 **A short gameplay video**
-<iframe width="1120" height="630" src="https://www.youtube.com/embed/aF65A8A6ZMs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![Watch the video](https://img.youtube.com/vi/aF65A8A6ZMs/maxresdefault.jpg)](https://www.youtube.com/watch?v=aF65A8A6ZMs)
 
 ## Credit 
-- The game assets is from [here](https://thomasgvd.itch.io/top-down-shooter/download/eyJleHBpcmVzIjoxNjIwMTk4MjY0LCJpZCI6NzczMjgzfQ%3d%3d.hI2bLphKuCr9S6KfluiFNykpyX0%3d)
+- The game assets is from [here](itch.io)
 - Many sounds from the internet , but i can't remember where i downloaded them
 - Free font from [Google Fonts](https://fonts.google.com/)
 
