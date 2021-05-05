@@ -23,7 +23,7 @@
 [![Watch the video](https://img.youtube.com/vi/aF65A8A6ZMs/0.jpg)](https://www.youtube.com/watch?v=aF65A8A6ZMs)
 
 ## Credit 
-- The game assets is from [here](itch.io)
+- The game assets is from [here](https://itch.io)
 - Many sounds from the internet , but i can't remember where i downloaded them
 - Free font from [Google Fonts](https://fonts.google.com/)
 
